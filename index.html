@@ -4,11 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+    <title>Daily Forecast</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap's CSS Lib -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <!-- FontAwesome CSS Lib -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <!-- Open Sans Google Font CSS Lib -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- jQuery CSS Lib -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <!-- My CSS Lib -->
+    <link rel="stylesheet" href="./Assets/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main>
+      <div class="row">
+        <div id="searchbar" class="col-md-4">
+          <!-- Left Panel -->
+          <form id="weather-form" class="user-search">
+            <h3>City</h3>
+            <input id="city-input" type="text" />
+            <button class="btn">Search</button>            
+          </form>
+          <div id="cityhistory">
 
+          </div>
+        </div>
+        <div id="masthead" class="card">
+        </div>
+        <div id="5dayfore">
+          <div class="row">
+            <div id="day1">
+              <h3 id="date1"></h3>
+              <img src="" class="icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div>
+        <p>&copy; 2021 Emily "Emma" Lysyk</p>
+      </div>
+    </footer>
     <script src="./Assets/scripts.js"></script>
-</body>
+    <script></script>
+  </body>
 </html>

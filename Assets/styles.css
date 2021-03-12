@@ -1,0 +1,42 @@
+:root {
+    --lav: #A4ADCB;
+    --grey: #707070;
+    --dkgrey: #4d4d4d;
+    --penk: #dc9ce4;
+    --bloo: #b7c8f9;
+    --teel: #acebd1;
+    --halfgrey: rgba(70,70,70,.5)
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    width: 100%;
+    margin: 0;
+  }
+
+  footer {
+    margin-top: 1rem;
+    min-height: 10%;
+    background-color: var(--lav);
+    min-width: 100%;
+    color: white;
+    line-height: 1rem;
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  #masthead {
+      text-align: center;
+  }
+
+  .favourable {
+      background-color: rgb(0, 218, 29);
+  }
+  .moderate {
+      background-color: rgb(203, 218, 0);
+  }
+  .severe {
+      background-color: rgb( 218, 0, 29);
+  }
