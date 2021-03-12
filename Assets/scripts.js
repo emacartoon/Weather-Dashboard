@@ -1,15 +1,34 @@
 var api_key = "f45ebe8eb4e6aec0968bafa6e60740c7";
-var forecastContainer = document.querySelector("#forecast-container");
-var city = "Mesa";
+var forecastContainer = document.querySelector("#foreday5");
+var city = "";
+
+// Container Elements
 var $masthead = document.querySelector("#masthead");
-var $cityText = document.querySelector("city-text");
-var historyContainer = document.querySelector("#cityhistory")
-var $mastHead = document.querySelector("#masthead")
-var dhistory = JSON.parse(localStorage.getItem("history")) || [];
+var $cityText = document.querySelector("#city-text");
+// Setting the current date and time in the nav bar
+var date = moment().format("MMMM Do YYYY, HH:mm");
+var $currentDay = document.getElementById("#todayDate");
+
+// Get a city from an input element
+var city = document.querySelector("#city-input");
+
+var historyContainer = document.querySelector("#cityhistory");
+var srchHistory = JSON.parse(localStorage.getItem("srchHistory")) || [];
+
+var citySrch=[];
+// looking through the search history array for the city in case it was already searched for - related to the history search section
+function find(cty){
+  for (var i=0; i<citySrch.length; i++){
+    if(cty.textValue === ctySrch[i]){
+      return -1;
+    }
+  }
+  return 1;
+}
 
 // Get today's weather function
 function getWeather(city) {
-  var currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
+  var currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;
   fetch(currentWeatherUrl)
     .then((data) => data.json())
     .then(function (weather) {
@@ -21,27 +40,27 @@ function getWeather(city) {
         return;
       }
 
-      var lat = weather.coord.lat;
-      var lon = weather.coord.lon;
       var onecallURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${api_key}`;
 
       fetch(onecallURL)
         .then((data) => data.json())
         .then(function (oneCallData) {
-          //   oneCallData has all the information that we need
+          // oneCallData has all the information that we need
           console.log(oneCallData);
-          var mainCard.classList.add("mainCard")
+          var mainCard = document.createElement("div");
+          mainCard.classList.add("mainCard");
 
-          // Header
+          // City Name
           var cityEl = document.createElement("h2")
-          cityEl.textContent = city + new Date().toDateString();
+          cityEl.textContent = city + new "-" + new Date().toDateString();
           mainCard.append(cityEl);
+          
 
           // UV Index
           var uvEl = document.createElement("button");
-          var unIndex = oneCallData.current.uvi
-          uvEl.textContent = oneCallData.current.uvi
-          console.log(typeof oneCallData.current.uvi)
+          var uvIndex = oneCallData.current.uvi;
+          uvEl.textContent = oneCallData.current.uvi;
+          console.log(typeof oneCallData.current.uvi);
           if (uvIndex<=2){
             uvEl.classList.add("favourable");
           }
@@ -58,9 +77,9 @@ function getWeather(city) {
 
         });
     });
-}
+  }
 
-
+  // 5 Day Forecast - div id=foreday5
 function getFiveDay(city) {
   var fiveDayFore = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
 
@@ -69,93 +88,49 @@ function getFiveDay(city) {
     .then(function (oneCallData) {
         //    has all the information that we need
         console.log(oneCallData);
-          var fiveDayArray[index] = classList.add("mainCard")
+          var fiveDayArray = oneCallData.list;
+          forecastContainer.innerHTML = "";
 
-          var cityEl = document.createElement("h2")
-          cityEl.textContent = city + new Date().toDateString();
-          mainCard.append();
-        });
-// Degree symbol alt+ 0176
-
-
-// Date
-var dateEl = document.createElement("h2");
-dateEl.textContent = currentDay
-forecastCard.append(dateEl);
-
-// Icon
-var iconEl = document.createElement("img");
-iconEl.setAttribute("src", `http://openweather.org/img/wn/${currentDay.weather[0].icon}@2x.png`)
-forecastCard.append(iconEl);
-
-// Temperature
-var tempEl = document.createElement("p");
-tempEl.textContent = `Temp: ${currentDay.main.temp} °F`
-forecastCard.append(templEl);
-
-// Humidity
-var humidityEl = document.createElement("p");
-templEl.textContent = `Temp: ${currentDay.main.humidity} %`
-forecastCard.append(humidityEl);
-
-
-historyContainer.append(forecastCard)
+          for (let i = 4; i < 5; i++) {
+            console.log(fiveDayArray[i]);
+            var forecastCard = document.createElement("div");
+            forecastContainer.classList.add("forecastCard");
+          
+            // City + Day
+            var dateEl = document.createElement("h2");
+            dateEl.textContent = currentDay.dt_slice(0, 10)+ "1:00";
+            forecastCard.append(dateEl);
+          
+          
+           // Icon
+            var iconEl = document.createElement("img");
+            iconEl.setAttribute("src", `http://openweather.org/img/wn/${currentDay.weather[0].icon}@2x.png`)
+            forecastCard.append(iconEl);
+          
+            // Degree symbol alt+ 0176
+            // Temperature
+            var tempEl = document.createElement("p");
+            tempEl.textContent = `Temp: ${currentDay.main.temp} °F`
+            forecastCard.append(templEl);
+          
+            // Humidity
+            var humidityEl = document.createElement("p");
+            templEl.textContent = `Humidity: ${currentDay.main.humidity} %`
+            forecastCard.append(humidityEl);
+          
+            // UV Index
+          
+            historyContainer.append(forecastCard)
+          }
+    });
 }
 
-
-historyContainer.addEventListener("click", function(e){
-  e.preventDefault();
-  if (!e.target.matches("li")) return;
-  getWeather(e.target.value);
-  getFiveDay(e.target.value);
-})
-
-$(".btn").on("click", function (event) {
-    //prevent refreshy
-    event.preventDefault();
-    console.log("submit");
-    var city = $("#city-input").val();
-    dhistory.pushState(city);
-    cityHandle(city);
-    console.log(city);
-    getWeather(city);
-    getFiveDay(city);
-
-  });
-
-  function cityHandle(cityname) {
-    // Treat as a catch all for each item in history array
-    if (!dhistory.includes(cityname)) {
-      dhistory.push(cityname)
-    };
-    localStorage.setItem("dhistory", JSON.stringify(past));
-    // Each item gets a p tag
-    // add event listener
-    // call getWeather() and buildDashboard using the value of
-    // event listener getFiveDay()
-    // push into history the most recent search
-    // take and store under history
-    
+renderIt();
+function renderIt(){
+  historyContainer.innerHTML = "";
+  for (const city of srchHistory) {
+    var previousCity = document.createElement("li");
+    srchHistory.textContent = city;
+    historyContainer.append(previousCity);
   }
-
-  renderIt();
-  function renderIt(){
-    historyContainer.innerHTML = "";
-    for (const city of dhistory) {
-      var previousCity = document.createElement("li");
-      previousCity.textContent = city;
-      historyContainer.append(previousCity);
-    }
-  }
-  
-
-
-
-// var container = document.createElement("div");
-// var dayof5 = document.createElement("div");
-// var blok = document.createElement("p");
-// dayof5.textContent = blk.append(date, img, temp, humidity);
-
-// container.append(dayof5);
-
-// return container;
+}

@@ -1,42 +1,101 @@
 :root {
-    --lav: #A4ADCB;
-    --grey: #707070;
-    --dkgrey: #4d4d4d;
-    --penk: #dc9ce4;
-    --bloo: #b7c8f9;
-    --teel: #acebd1;
-    --halfgrey: rgba(70,70,70,.5)
-  }
-  
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px;
-    line-height: 1;
-    width: 100%;
-    margin: 0;
-  }
+  --lav: #a4adcb;
+  --grey: #707070;
+  --dkgrey: #4d4d4d;
+  --penk: #dc9ce4;
+  --bloo: #b7c8f9;
+  --teel: #acebd1;
+  --halfgrey: rgba(70, 70, 70, 0.5);
+}
 
-  footer {
-    margin-top: 1rem;
-    min-height: 10%;
-    background-color: var(--lav);
-    min-width: 100%;
-    color: white;
-    line-height: 1rem;
-    text-align: center;
-    padding: 15px 0;
-  }
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  width: 100%;
+  margin: 0;
+}
 
-  #masthead {
-      text-align: center;
-  }
+footer {
+  margin-top: 1rem;
+  min-height: 10%;
+  background-color: var(--lav);
+  min-width: 100%;
+  color: white;
+  line-height: 1rem;
+  text-align: center;
+  padding: 15px 0;
+}
 
-  .favourable {
-      background-color: rgb(0, 218, 29);
-  }
-  .moderate {
-      background-color: rgb(203, 218, 0);
-  }
-  .severe {
-      background-color: rgb( 218, 0, 29);
-  }
+header {
+  text-align: center;
+  background-color: transparent;
+  color: var(--dkgrey);
+  border-radius: 0;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 2rem 0;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  width: 100%;
+}
+
+#todayDate {
+  width: 100%;
+  background-color: var(--lav);
+  padding: 20px 0;
+  color: white;
+  font-size: 3rem;
+}
+
+.btn {
+  border: none;
+  background-color: var(--bloo);
+  color: white;
+  padding: .75rem .75rem;
+  line-height: .5;
+}
+
+#masthead {
+  text-align: left;
+  width: 100%;
+  color: var(--grey);
+  font-size: 1.75rem;
+  padding: 2rem;
+}
+
+.favourable {
+  background-color: rgb(0, 218, 29);
+}
+.moderate {
+  background-color: rgb(203, 218, 0);
+}
+.severe {
+  background-color: rgb(218, 0, 29);
+}
+
+#foreday5 {
+  text-align: left;
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+}
+
+.row {
+  text-align: left;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.forecard {
+  text-align: left;
+  width: 10rem;
+  justify-content: space-between;
+  align-content: space-around;
+  background-color: var(--teel);
+  color: white;
+  margin: auto;
+  border: 1px solid var(--grey);
+}
