@@ -9,6 +9,11 @@ var city;
 // Container Elements
 var $masthead = document.querySelector("#masthead");
 var $cityText = document.querySelector("#city-text");
+var $foreText1 = document.querySelector("#fore1");
+var $foreText2 = document.querySelector("#fore2");
+var $foreText3 = document.querySelector("#fore3");
+var $foreText4 = document.querySelector("#fore4");
+var $foreText5 = document.querySelector("#fore5");
 
 // Get a city from an input element
 
