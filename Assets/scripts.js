@@ -24,11 +24,10 @@ button.addEventListener("click", function (e) {
   getWeather(city);
   // looking through the search history array for the city in case it was already searched for - related to the history search section
   if (srchHistory.indexOf(city) === -1) {
-    srchHistory.push(city)
-      }
+    srchHistory.push(city);
+  }
   localStorage.setItem("srchHistory", JSON.stringify(srchHistory));
 });
-
 
 // Get today's weather function
 function getWeather(city) {
@@ -37,7 +36,7 @@ function getWeather(city) {
     .then((data) => data.json())
     .then(function (weather) {
       console.log(weather);
-    getuvIndex(weather.coord.lat, weather.coord.lon);
+      getuvIndex(weather.coord.lat, weather.coord.lon);
       if (weather.cod === "404") {
         // Display message to user
         alert("City not found");
@@ -48,27 +47,21 @@ function getWeather(city) {
 
       var singleCityPull = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=imperial`;
 
-      
-
-
       fetch(singleCityPull)
-      .then((data) => data.json())
-      .then(function (singleCityData) {
-        // singleCityData has all the information that we need
-        console.log(singleCityData);
-        var mainCard = document.createElement("div");
-        mainCard.classList.add("mainCard");
-        
-        // City Name
-        var cityEl = document.createElement("h2");
-        cityEl.textContent = city + "-" + new Date().toDateString();
-        mainCard.append(cityEl);
-        
-        
+        .then((data) => data.json())
+        .then(function (singleCityData) {
+          // singleCityData has all the information that we need
+          console.log(singleCityData);
+          var mainCard = document.createElement("div");
+          mainCard.classList.add("mainCard");
 
+          // City Name
+          var cityEl = document.createElement("h2");
+          cityEl.textContent = city + "-" + new Date().toDateString();
+          mainCard.append(cityEl);
 
           // Icon
-          console.log(singleCityData)
+          console.log(singleCityData);
           var iconEl = document.createElement("img");
           iconEl.setAttribute(
             "src",
@@ -118,20 +111,19 @@ function getuvIndex(lat, lon) {
         uvEl.classList.add("moderate");
       }
       $masthead.append(uvEl);
-    })    
+    });
 }
-
 
 // 5 Day Forecast - div id=foreday5
 function getFiveDay(city) {
-  var fiveDayFore = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
+  var fiveDayForeUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${api_key}&units=imperial`;
 
-  fetch(fiveDayFore)
+  fetch(fiveDayForeUrl)
     .then((data) => data.json())
-    .then(function (singleCityData) {
+    .then(function (singleCityForeData) {
       //    has all the information that we need
-      console.log(singleCityData);
-      var fiveDayArray = singleCityData.list;
+      console.log(singleCityForeData);
+      var fiveDayArray = singleCityForeData.list;
       forecastContainer.innerHTML = "";
 
       for (let i = 4; i < 5; i++) {
